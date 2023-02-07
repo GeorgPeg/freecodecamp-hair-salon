@@ -50,7 +50,7 @@ SET default_table_access_method = heap;
 CREATE TABLE public.appointments (
     appointment_id integer NOT NULL,
     customer_id integer,
-    "time" character varying(5),
+    "time" character varying(10),
     service_id integer
 );
 
@@ -173,32 +173,13 @@ ALTER TABLE ONLY public.services ALTER COLUMN service_id SET DEFAULT nextval('pu
 -- Data for Name: appointments; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.appointments VALUES (9, 47, '9:30', 1);
-INSERT INTO public.appointments VALUES (10, 47, '10:30', 3);
-INSERT INTO public.appointments VALUES (11, 48, '10:40', 6);
-INSERT INTO public.appointments VALUES (12, 54, '8:00', 9);
-INSERT INTO public.appointments VALUES (13, 55, '15:14', 8);
-INSERT INTO public.appointments VALUES (14, 47, '14:14', 2);
-INSERT INTO public.appointments VALUES (15, 54, '15:36', 4);
-INSERT INTO public.appointments VALUES (16, 54, '13:56', 7);
-INSERT INTO public.appointments VALUES (17, 66, '10:30', 1);
-INSERT INTO public.appointments VALUES (18, 66, '11am', 2);
-INSERT INTO public.appointments VALUES (19, 66, '10:30', 2);
-INSERT INTO public.appointments VALUES (20, 66, '11am', 2);
-INSERT INTO public.appointments VALUES (21, 66, '11am', 1);
-INSERT INTO public.appointments VALUES (22, 66, '10:30', 1);
-INSERT INTO public.appointments VALUES (23, 66, '11am', 2);
+
 
 
 --
 -- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.customers VALUES (54, '333-3333', 'Laura');
-INSERT INTO public.customers VALUES (55, '444-4444', 'Fritz');
-INSERT INTO public.customers VALUES (66, '555-555-5555', 'Fabio');
-INSERT INTO public.customers VALUES (47, '111-1111', 'Tom');
-INSERT INTO public.customers VALUES (48, '222-2222', 'Clara');
 
 
 --
@@ -220,7 +201,7 @@ INSERT INTO public.services VALUES (9, 'Highlights');
 -- Name: appointments_appointment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.appointments_appointment_id_seq', 23, true);
+SELECT pg_catalog.setval('public.appointments_appointment_id_seq', 24, true);
 
 
 --

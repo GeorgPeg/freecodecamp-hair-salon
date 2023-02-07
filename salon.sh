@@ -53,8 +53,15 @@ MAIN_MENU() {
         CUST_IN=$($PSQL "INSERT INTO customers(phone, name) VALUES('$CUSTOMER_PHONE', '$CUSTOMER_NAME')")
       fi
 
+      # Get service name
+      SERVICE_NAME=$($PSQL "SELECT name FROM services WHERE service_id=$SERVICE_ID_SELECTED")
+
+      # Format name
+      CUSTOMER_NAME=$(echo $CUSTOMER_NAME | sed -E 's/^ *| *$//g')
+      SERVICE_NAME=$(echo $SERVICE_NAME | sed -E 's/^ *| *$//g')
+
       # Ask for appointment time
-      echo -e "\nWhen would you like your appointment?"
+      echo -e "\nWhen would you like your appointment for a $SERVICE_NAME, $CUSTOMER_NAME?"
       read SERVICE_TIME
 
       # Add to appointments
@@ -62,12 +69,7 @@ MAIN_MENU() {
       CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone='$CUSTOMER_PHONE'")
       APP_IN=$($PSQL "INSERT INTO appointments(customer_id,time,service_id) VALUES($CUSTOMER_ID, '$SERVICE_TIME', $SERVICE_ID_SELECTED)")
 
-      # Get service name
-      SERVICE_NAME=$($PSQL "SELECT name FROM services WHERE service_id=$SERVICE_ID_SELECTED")
-
       # Format 
-      SERVICE_NAME=$(echo $SERVICE_NAME | sed -E 's/^ *| *$//g')
-      CUSTOMER_NAME=$(echo $CUSTOMER_NAME | sed -E 's/^ *| *$//g')
       SERVICE_TIME=$(echo $SERVICE_TIME | sed -E 's/^ *| *$//g')       
 
       # Message entry
